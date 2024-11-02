@@ -12,13 +12,15 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Table, TableFooter } from "@/components/ui/table";
+import { useToast } from "@/hooks/use-toast";
 import addNewParticipant from "@/lib/actions/addNewParticipant.action";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const AddNewParticipant = () => {
   const router = useRouter();
+
+  const { toast } = useToast();
 
   const [participantDetails, setParticipantDetails] = useState({
     name: "",
@@ -27,6 +29,21 @@ const AddNewParticipant = () => {
 
   const handleAddParticipant = async () => {
     const newParticipant = await addNewParticipant(participantDetails);
+    if (!newParticipant) {
+      toast({
+        title: "Error",
+        description:
+          "We run into an issue adding participant, Please try again.",
+        className: "bg-red-400 text-white capitalize",
+      });
+      return;
+    }
+
+    toast({
+      title: "Participant Added",
+      description: "New participant has been added to the quiz.",
+      className: "bg-emerald-400 text-white",
+    });
     router.refresh();
   };
 

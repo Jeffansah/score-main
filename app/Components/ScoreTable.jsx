@@ -19,7 +19,7 @@ const ScoreTable = async () => {
   return (
     <Table>
       <TableHeader>
-        <TableRow>
+        <TableRow className="font-bold">
           <TableHead className="w-[100px]">Participant</TableHead>
           <TableHead>School</TableHead>
           <TableHead>Round 1</TableHead>

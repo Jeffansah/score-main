@@ -11,6 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useToast } from "@/hooks/use-toast";
 import deleteParticipant from "@/lib/actions/deleteParticipant.action";
 import { XIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -18,8 +19,27 @@ import { useRouter } from "next/navigation";
 const DeleteParticipant = ({ participant }) => {
   const router = useRouter();
 
+  const { toast } = useToast();
+
   const handleDeleteParticipant = async () => {
     const deletedParticipant = await deleteParticipant(participant._id);
+    if (!deletedParticipant) {
+      toast({
+        title: "Error",
+        description:
+          "We encountered an issue deleting the participant. Please try again.",
+        className: "bg-red-400 text-white",
+      });
+      return;
+    }
+
+    toast({
+      title: "Participant Removed",
+      description: `${
+        deletedParticipant.name.split(" ")[0]
+      } has been removed from the quiz.`,
+      className: "bg-amber-400 text-white",
+    });
     router.refresh();
   };
 

@@ -14,6 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Table, TableFooter } from "@/components/ui/table";
+import { useToast } from "@/hooks/use-toast";
 import addNewParticipant from "@/lib/actions/addNewParticipant.action";
 import editParticipant from "@/lib/actions/editParticipant.action";
 import { PencilIcon, SquarePenIcon } from "lucide-react";
@@ -22,6 +23,8 @@ import { useState } from "react";
 
 const EditParticipant = ({ participant }) => {
   const router = useRouter();
+
+  const { toast } = useToast();
 
   const [scores, setScores] = useState({
     round1: { score: participant.round1.score },
@@ -40,6 +43,23 @@ const EditParticipant = ({ participant }) => {
 
   const handleEditParticipant = async () => {
     const editedParticipant = await editParticipant(participant._id, scores);
+    if (!editedParticipant) {
+      toast({
+        title: "Error",
+        description:
+          "We encountered an issue updating the participant. Please try again.",
+        className: "bg-red-400 text-white",
+      });
+      return;
+    }
+
+    toast({
+      title: "Participant Updated",
+      description: `${
+        editedParticipant.name.split(" ")[0]
+      }'s details have been updated successfully.`,
+      className: "bg-emerald-400 text-white",
+    });
     router.refresh();
   };
 
