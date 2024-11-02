@@ -11,6 +11,7 @@ export default async function Home() {
 
   return (
     <div className="w-full h-screen flex justify-center items-center flex-col gap-6 max-w-[1400px] mx-auto ">
+      <h1 className="uppercase text-3xl font-bold">quiz scores</h1>
       <ScoreTable />
       <div className="w-full flex justify-end">
         <AddNewParticipant />

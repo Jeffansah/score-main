@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -32,7 +33,7 @@ const AddNewParticipant = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Add Participant</Button>
+        <Button>Add New Participant</Button>
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-[425px]">
@@ -71,9 +72,11 @@ const AddNewParticipant = () => {
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit" onClick={handleAddParticipant}>
-            Add
-          </Button>
+          <DialogClose asChild>
+            <Button type="submit" onClick={handleAddParticipant}>
+              Add Participant
+            </Button>
+          </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>

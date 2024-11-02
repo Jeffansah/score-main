@@ -5,6 +5,7 @@ import { ordinalSuffix } from "@/lib/utils";
 import { useParticipantStore } from "@/store";
 import { useEffect } from "react";
 import EditParticipant from "./EditParticipant";
+import DeleteParticipant from "./DeleteParticipant";
 
 const Participants = ({ participants }) => {
   return (
@@ -40,6 +41,9 @@ const Participants = ({ participants }) => {
             </TableCell>
             <TableCell>
               <EditParticipant participant={participant} />
+            </TableCell>
+            <TableCell>
+              <DeleteParticipant participant={participant} />
             </TableCell>
           </TableRow>
         );

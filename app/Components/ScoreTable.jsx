@@ -18,7 +18,6 @@ const ScoreTable = async () => {
 
   return (
     <Table>
-      <TableCaption className>QUIZ SCORES</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">Participant</TableHead>
@@ -31,10 +30,10 @@ const ScoreTable = async () => {
           <TableHead className="">Total</TableHead>
           <TableHead className="">Rank</TableHead>
           <TableHead className="">Edit Scores</TableHead>
+          <TableHead className="">Remove Participant</TableHead>
         </TableRow>
       </TableHeader>
       {participants && <Participants participants={participants} />}
-      {/* <AddNewParticipant/> */}
     </Table>
   );
 };
