@@ -52,7 +52,8 @@ const EditParticipant = ({ participant }) => {
         <DialogHeader>
           <DialogTitle>Edit Participant Scores</DialogTitle>
           <DialogDescription>
-            Edit scores of the participant. Click save changes when you're done.
+            Edit scores of the participant. Click save changes when you are
+            done.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
